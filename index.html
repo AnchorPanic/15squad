@@ -142,10 +142,6 @@ button:disabled{opacity:.4;cursor:not-allowed;}
   height:30px;display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
-.card .badge{
-  position:absolute;top:2px;left:3px;font-size:9px;font-weight:900;
-  background:rgba(0,0,0,.7);border-radius:4px;padding:1px 4px;color:#ffe08a;
-}
 
 /* result */
 .result{
@@ -259,6 +255,7 @@ const LIMITED = new Set(DATA[0].list);
 let squad = [];
 
 function iconPath(n){ return "assets/icons/" + n + ".png"; }
+function disp(n){ return n.replace(/·/g, ' '); }
 
 function thumbHTML(name){
   const safe = name.replace(/"/g,'&quot;');
@@ -274,9 +271,8 @@ function buildTiers(){
       '<div class="tier-body">'+
         t.list.map(n =>
           '<div class="card" data-n="'+n+'" data-p="'+t.price+'" onclick="pick(\''+n.replace(/'/g,"\\'")+'\','+t.price+')">'+
-            (LIMITED.has(n) ? '<div class="badge">한정</div>' : '')+
             thumbHTML(n)+
-            '<div class="nm">'+n+'</div>'+
+            '<div class="nm">'+disp(n)+'</div>'+
           '</div>').join('')+
       '</div>'+
     '</div>'
@@ -309,7 +305,7 @@ function render(){
       h += '<div class="slot filled" onclick="drop('+i+')" title="클릭하면 제외됩니다">'+
              '<div class="pr">$'+squad[i].p+'</div>'+
              thumbHTML(squad[i].n)+
-             '<div class="nm">'+squad[i].n+'</div>'+
+             '<div class="nm">'+disp(squad[i].n)+'</div>'+
            '</div>';
     } else {
       h += '<div class="slot"><div class="ph">+</div></div>';
@@ -332,7 +328,7 @@ function text(){
   const lines = [];
   lines.push('UID : ' + (uid || '(입력해 주세요)'));
   lines.push('스쿼드 : ' + (squad.length
-      ? squad.map(x=>x.n+' $'+x.p).join(' / ')
+      ? squad.map(x=>disp(x.n)+' $'+x.p).join(' / ')
       : '(아직 없음)'));
   lines.push('합계 : ' + spent() + ' / ' + BUDGET);
   lines.push('한 줄 : ');
@@ -413,7 +409,7 @@ function saveImage(){
     g.font='900 18px "Noto Sans KR", sans-serif';
     g.fillText('$'+c.p, x+cw/2, y+cw+26);
     g.font='700 13px "Noto Sans KR", sans-serif';
-    wrap(g, c.n, x+cw/2, y+cw+48, cw, 16);
+    wrap(g, disp(c.n), x+cw/2, y+cw+48, cw, 16);
     const img=new Image();
     img.onload=()=>{ g.drawImage(img,x,y,cw,cw); if(++done===total) finish(); };
     img.onerror=()=>{ if(++done===total) finish(); };
