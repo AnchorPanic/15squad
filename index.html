@@ -262,8 +262,8 @@ function iconPath(n){ return "assets/icons/" + n + ".png"; }
 
 function thumbHTML(name){
   const safe = name.replace(/"/g,'&quot;');
-  return '<img class="thumb" src="'+iconPath(name)+'" alt="'+safe+'" '+
-         'onerror="this.outerHTML=\'<div class=&quot;fallback&quot;>'+safe+'</div>\'">';
+  return '<img class="thumb" src="'+iconPath(name)+'" alt="" '+
+         'onerror="this.outerHTML=\'<div class=&quot;fallback&quot;></div>\'">';
 }
 
 function buildTiers(){
