@@ -66,8 +66,9 @@ header p{margin:0;color:var(--dim);font-size:14px;}
 .slot.filled{border-style:solid;cursor:pointer;}
 .slot .ph{color:var(--dim);font-size:22px;font-weight:300;}
 .slot .nm{
-  font-size:10px;font-weight:700;text-align:center;line-height:1.15;
+  font-size:10px;font-weight:700;text-align:center;line-height:1.1;
   padding:2px 3px;width:100%;word-break:keep-all;
+  height:22px;display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
 .slot .pr{
   position:absolute;top:2px;right:3px;font-size:10px;font-weight:900;
@@ -75,9 +76,8 @@ header p{margin:0;color:var(--dim);font-size:14px;}
 }
 .slot .thumb{width:100%;height:var(--cell);object-fit:cover;display:block;background:var(--panel2);}
 .slot .fallback{
-  width:100%;height:var(--cell);display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;text-align:center;padding:4px;
-  background:var(--panel2);word-break:keep-all;line-height:1.2;
+  width:100%;height:var(--cell);
+  background:repeating-linear-gradient(45deg,#1e1e29,#1e1e29 6px,#23232f 6px,#23232f 12px);
 }
 
 /* controls */
@@ -133,13 +133,14 @@ button:disabled{opacity:.4;cursor:not-allowed;}
 .card.unaffordable{opacity:.35;}
 .card .thumb{width:100%;height:var(--cell);object-fit:cover;display:block;}
 .card .fallback{
-  width:100%;height:var(--cell);display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;text-align:center;padding:4px;
-  word-break:keep-all;line-height:1.2;color:var(--text);
+  width:100%;height:var(--cell);
+  background:repeating-linear-gradient(45deg,#1e1e29,#1e1e29 6px,#23232f 6px,#23232f 12px);
 }
 .card .nm{
-  font-size:10px;font-weight:700;text-align:center;line-height:1.15;
+  font-size:10px;font-weight:700;text-align:center;line-height:1.1;
   padding:3px 2px;word-break:keep-all;
+  height:30px;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
 }
 .card .badge{
   position:absolute;top:2px;left:3px;font-size:9px;font-weight:900;
@@ -415,11 +416,7 @@ function saveImage(){
     wrap(g, c.n, x+cw/2, y+cw+48, cw, 16);
     const img=new Image();
     img.onload=()=>{ g.drawImage(img,x,y,cw,cw); if(++done===total) finish(); };
-    img.onerror=()=>{
-      g.fillStyle='#8d8b9a'; g.font='700 12px "Noto Sans KR", sans-serif';
-      wrap(g, c.n, x+cw/2, y+cw/2, cw-10, 15);
-      if(++done===total) finish();
-    };
+    img.onerror=()=>{ if(++done===total) finish(); };
     img.src=iconPath(c.n);
   });
 }
