@@ -201,7 +201,12 @@ button.not-ready{opacity:.4;}
   padding:18px;max-width:620px;width:100%;text-align:center;
 }
 .modal-inner h3{margin:0 0 4px;font-size:16px;font-weight:700;}
-.modal-inner .guide{color:var(--dim);font-size:13px;margin:0 0 14px;line-height:1.6;}
+.modal-inner .guide{color:var(--dim);font-size:13px;margin:0 0 10px;line-height:1.6;}
+.modal-inner .need{
+  margin:0 0 14px;padding:10px 12px;font-size:13px;line-height:1.65;
+  border:1px solid var(--accent);border-radius:10px;
+  background:rgba(110,231,255,.08);color:var(--text);
+}
 .modal-inner img{
   width:100%;height:auto;border-radius:8px;display:block;
   border:1px solid var(--line);
@@ -261,8 +266,11 @@ button.not-ready{opacity:.4;}
     <h3>스쿼드 이미지가 만들어졌습니다</h3>
     <p class="guide">
       휴대폰은 <b>이미지를 길게 눌러</b> 저장하세요.<br>
-      PC는 <b>우클릭 → 이미지를 다른 이름으로 저장</b>을 쓰거나 아래 버튼을 누르세요.<br>
-      <b>저장한 이미지를 이벤트 게시글에 올려 주세요.</b>
+      PC는 <b>우클릭 → 이미지를 다른 이름으로 저장</b>을 쓰거나 아래 버튼을 누르세요.
+    </p>
+    <p class="need">
+      저장한 이미지를 이벤트 게시글에 올릴 때,<br>
+      <b>이 스쿼드를 왜 이렇게 구성했는지도 함께 남겨 주세요.</b>
     </p>
     <img id="shot" alt="내 스쿼드">
     <div class="modal-ctrls">
